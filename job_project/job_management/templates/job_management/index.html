@@ -1,0 +1,30 @@
+{% extends 'management/layout.html' %}
+
+{% block title %}Employee Management — Main{% endblock %}
+
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'management/css/index.css' %}">
+{% endblock %}
+
+{% block main %}
+<section class="container section">
+	<h2 class="section-title">Companies</h2>
+	<p class="section-description">Click on links below to see more</p>
+	<ul class="company-list">
+		{% for company in companies %}
+		<li class="company-list-item">
+			<a href="{% url 'management:company-detail' company.id %}" class="company-link">
+				{{ company.name }}
+			</a>
+			{% if company.description %}
+			<p class="company-description">
+				{{ company.description }}
+			</p>
+			{% endif %}
+		</li>
+		{% endfor %}
+	</ul>
+</section>
+{% endblock %}
